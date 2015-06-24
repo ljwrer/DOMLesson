@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style.css">
+		<style>
+			.m-nav{font-size: 14px;} 	
+			.m-nav li{width: 100px;padding-left: 20px;}
+			p{
+					
+			}
+		</style>
+		<script type="text/javascript" src="js/base.js"></script>
+	</head>
+
+	<body>
+		<p style="line-height: 200px">网易一线资深工程师</p>
+		<script>
+			var p=document.getElementsByTagName("p")[0];
+			println(p.style["line-height"]);
+			p.style["line-height"]="300px";
+			
+			println(p.style.cssText["line-height"]);
+			println(p.style.cssText);
+			println(p.style.cssText.substring(13,18));
+			println(p.style.lineHeight);			
+
+//			var link=document.getElementsByTagName("link")[0];
+//			var sheet=link.sheet;
+//			println(sheet);
+//			var list=sheet.cssRules;
+//			println(list);
+//			var rule=list[0];
+//			println(rule);
+//			var styleDec=rule.style;
+//			println(styleDec);
+//			var bac=styleDec.backgroundColor;
+//			println(bac);
+//			bac=link.sheet.cssRules[0].style.backgroundColor;
+//			println(bac);
+//			var truebac=window.getComputedStyle(p).backgroundColor;
+//			println(truebac);
+//			var element=document.getElementsByTagName("style")[0];
+//			element=document.styleSheets[1];
+//			var pl=element.cssRules[1].style.paddingLeft;
+//			println(pl);
+		</script>
+	</body>
+
+</html>

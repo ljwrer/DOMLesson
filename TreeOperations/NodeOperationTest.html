@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		 <form><input id="userName" name="userName"></form>
+		 <form><label>用户名：</label><input id="userName" name="userName"> </form>
+		 <script>
+		 	var form=document.getElementsByTagName("form")[0];
+
+		 	var input=document.getElementById("userName");
+		 	input.value="hello";
+		 	var label = document.createElement('label');
+			label.textContent = "用户名：";
+
+//			form[0].appendChild(input);
+			form.insertBefore(label,input);
+			input.setAttribute()
+		 </script>
+	</body>
+</html>

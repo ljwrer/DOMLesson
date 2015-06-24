@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="js/base.js" ></script>
+	</head>
+	
+	<body>
+		 <!--<div id="user" data-first-name="Wei" class="userName">aq</div>
+		 <script>
+		 	var element=document.getElementById("user");
+		 	println(element.dataset.firstName);
+		 	println(element.getAttribute("data-first-name"));
+		 	println(element.firstName);
+		 	println(element.dataset["data-first-name"]);
+			println(element.className);
+		 </script>-->
+		 <!--<input id="mobile" type="text">
+		 <script>
+		 	var mobile=document.getElementById("mobile");
+		 	var type=mobile.getAttribute("type");
+		 	println(type);
+		 	println(mobile.type);
+		 </script>-->
+		 <!--<div><label for="user">用户名：</label><input id="user"></div>
+		 <script>
+		 	var element=document.getElementsByTagName("label")[0];
+		 	var label=element["htmlFor"];
+		 	println(label);	
+		 </script>-->
+		 <input name="mobile">
+		 <script>
+		 	var mobile=document.getElementsByName("mobile")[0];
+		 	mobile.setAttribute("maxlength",11);
+		 </script>
+	</body>
+</html>

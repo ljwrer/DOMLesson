@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../js/base.js" ></script>
+	</head>
+	<body>
+		<p id="p1">for</p>
+		<script>
+			var p1=document.getElementById("p1");
+			var i=0;
+			
+			function listener(event){
+				event=event||window.event;
+				println(i++);
+			}
+			function listener2(event){
+				event=event||window.event;
+				event.target=event.target||event.srcElement;
+				alert(event.type);
+				alert(event.target);
+				alert(event.currentTarget);
+			}
+			p1.addEventListener("click",listener2,false);
+			p1.addEventListener("mousemove",listener,false);
+			p1.removeEventListener("mousemove",listener,false);
+//			p1.dispatchEvent('click');
+//			p1.dispatchEvent('click');
+//			var event=new FocusEvent();
+		</script>
+	</body>
+</html>

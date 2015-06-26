@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../js/base.js" ></script>
+	</head>
+	<body>
+		<div>
+			<a href="bind.html">link</a>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+		</div>
+		<script>
+			
+			var p=document.getElementsByTagName("div")[0];
+			var getElementChildren=function(element){
+				var ret=[];
+				if(element.children)
+				{
+					ret=element.children;
+				}
+				else
+				{
+					var childNodes=element.childNodes;
+					for(var i=0,len=childNodes.length;i<len;i++)
+					{
+						if(childNodes[i].nodeType==1)
+						{
+							ret[ret.length]=childNodes[i];	
+						}
+					}
+				}
+				return ret;
+			};
+			var pChildNodes=p.childNodes;
+			println(pChildNodes);
+			var children=getElementChildren(p);
+			println(children);
+			for(var i=0,len=pChildNodes.length;i<len;i++)
+			{
+				if(pChildNodes[i].nodeType==1)
+				{
+									println(pChildNodes[i]);
+				}
+			}
+			println(" ");
+			for(i=0,len=children.length;i<len;i++)
+			{
+				println(children[i]);
+			}
+//			var ele=document.getElementsByTagName("*")
+//			for(i=0,len=ele.length;i<len;i++)
+//			{
+//				println(ele[i]);
+//			}
+		</script>
+	</body>
+</html>

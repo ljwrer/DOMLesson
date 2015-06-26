@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../js/base.js" ></script>
+		<script>
+var arr=[1,2,"a","b"];
+var ret=arr.splice(1,2,3);
+println(arr+'------'+ret);
+println((/^abc/i).test("Abc123"));
+//var x = {a:1};
+//var y = x;
+//y.a = 2;
+//println(x.a);
+//var obj = Object.create({a:1});
+//obj.b=2;
+//println(obj.hasOwnProperty('a'));
+Object.create=function(obj){
+	return {a:3};
+}
+var obj=Object.create();
+println(obj.a);
+
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>dataset闭包实现</title>
+<script type="text/javascript">
+        (function(){
+            /**
+             * [if 在不包含此属性的浏览器中模拟Element.dataset属性
+             * @param  {[无]} !document.documentElement.dataset [没有该属性时添加]
+             * @return {[Array]} [返回的是dataset Object, 而不是实时的NodeList/HTMLCollection对象, 无法达到原生效果]
+             */
+              if(!document.documentElement.dataset){
+                //给 Element 添加原型属性 dataset "__defineGetter__"非标准的Getter方法,但是浏览器几乎都适用
+                Element.prototype.__defineGetter__("dataset",function(){
+                    var attrs = this.attributes;
+                    var dataset = {};
+                      for(var i=0;i<attrs.length;i++){
+                          var name = attrs[i].name;
+                          //匹配
+                          if(name.indexOf("data-") === 0){
+                              dataset[name.substring(5)] = attrs[i].value;
+                          }
+                      }
+                  return dataset;//
+                });
+              }
+        }());
+     
+    function testDataset(obj){
+        var dataset = obj.dataset;
+        window.alert(dataset.email);
+    }
+</script>
+</head>
+<body>
+        <div >
+            <input id="test1" name="test1" type="text"
+            data-id="123456" data-account-name="wwq"
+            data-name="魏文庆" data-email="wwq123@163.com" 
+            data-mobile="13524543878"
+            onclick="testDataset(this);"
+             />
+        </div>
+</body>
+</html>

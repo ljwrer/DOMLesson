@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../js/base.js"></script>
+	</head>
+
+	<body>
+		<p data-name="Ray" data-age="23" class="pp">a</p>
+		<script>
+			var p = document.getElementsByTagName("p")[0];
+
+			function dataset(obj) {
+				var res = {};
+				if (obj.dataset) {
+					res = obj.dataset;
+				} else {
+					var attrs = {},
+						name = "",
+						changeStr = function(s, str) {
+							var i = 0,
+								start = 0,
+								_s = "";
+							do {
+								i = str.indexOf(s, start);
+								if (i != -1) {
+									_s = str.charAt(i + 1).toUpperCase();
+									str = str.slice(0, i) + _s + str.slice(i + 2);
+									start++;
+								}
+							} while (i != -1);
+							return str;
+						};
+					for (var j = 0; j < obj.attributes.length; j++) {
+						name = obj.attributes[j].nodeName;
+						if (/^(data-)/.test(name)) {
+							name = name.replace("data-", "");
+							name = changeStr("-", name);
+							attrs[name] = obj.attributes[j].nodeValue;
+						}
+					}
+					res = attrs;
+				}
+				return res;
+			}
+			var data = dataset(p);
+			println(data.name);
+			println(data.age);
+		</script>
+	</body>
+
+</html>

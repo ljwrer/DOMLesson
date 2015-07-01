@@ -13,8 +13,8 @@
 				width: 200px;
 				height: 100px;
 				background-color: deepskyblue;
-				left:0px;
-				top:0px;
+				left:100px;
+				top:100px;
 			}
 		</style>
 		<script type="text/javascript" src="../js/base.js" ></script>
@@ -25,7 +25,7 @@
 		</div>
 		<script>
 			var d=document.getElementById("drag");
-			var x,y,move;
+			var x,y,move=false;
 			var mousedownHander=function(event){
 				event=event||window.event;
 				x=event.clientX;
@@ -34,10 +34,14 @@
 			};
 			var mousemoveHander=function(event){
 				if(!move)return;
-				var left=parseInt(d.style.left)||0;
-				var top=parseInt(d.style.top)||0;
-				d.style.left=left+event.clientX-x+'px';
-				d.style.top=top+event.clientY-y+"px";
+				var newX=event.clientX;
+				var newY=event.clientY;
+				var left=parseInt(window.getComputedStyle(d).left)||0;
+				var top=parseInt(window.getComputedStyle(d).top)||0;
+				d.style.left=left+newX-x+'px';
+				d.style.top=top+newY-y+"px";
+				x=newX;
+				y=newY;
 			};
 			var mouseupHander=function(event){
 				move=false;

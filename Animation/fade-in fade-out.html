@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			#drag{
+				position: absolute;
+				width: 200px;
+				height: 100px;
+				background-color: deepskyblue;
+				left:100px;
+				top:100px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="drag" class="drag">
+
+		</div>
+		<script>
+			var fadeout=function(element){
+				element.style.opacity=1;
+				var step=function(){
+					element.style.opacity=element.style.opacity-0.01;
+					if(element.style.opacity<=0)
+					{
+						clearInterval(intervalID);
+					}
+				}
+				var intervalID=setInterval(step,10);
+			}
+		</script>
+		<script>
+			var p=document.getElementById("drag");
+			fadeout(p);
+		</script>
+	</body>
+</html>

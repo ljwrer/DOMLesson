@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			#drag{
+				position: absolute;
+				width: 200px;
+				height: 100px;
+				background-color: deepskyblue;
+				left:0px;
+				top:0px;
+			}
+		</style>
+		<script type="text/javascript" src="../js/base.js" ></script>
+	</head>
+	<body>
+		<div id="drag" class="drag">
+			
+		</div>
+		<script>
+			var d=document.getElementById("drag");
+			var x,y,move;
+			var mousedownHander=function(event){
+				event=event||window.event;
+				x=event.clientX;
+				y=event.clientY;
+				move=true;
+			};
+			var mousemoveHander=function(event){
+				if(!move)return;
+				var left=parseInt(d.style.left)||0;
+				var top=parseInt(d.style.top)||0;
+				alert(left);
+				alert(top);
+				d.style.left=left+event.clientX-x+'px';
+				d.style.top=top+event.clientY-y+"px";
+			};
+			var mouseupHander=function(event){
+				move=false;
+			}
+			d.addEventListener("mousedown",mousedownHander,false);
+			d.addEventListener("mousemove",mousemoveHander,false);
+			d.addEventListener("mouseup",mouseupHander,false);
+		</script>
+	</body>
+</html>

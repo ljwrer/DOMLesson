@@ -57,13 +57,20 @@
 						element.style.left = Math.floor(currentLeft - 1224*5/2000)+"px";
 					} else {
 						element.style.left = -1224*5+"px";
-						clearInterval(intervalID);
+//						clearInterval(intervalID);
+						element.style.left = 0+"px";
 					}
 				};
 				var intervalID = setInterval(step, 10);
 			};
 			var main=$("main");
 			slide(main);
+			var process=function(elem){
+				var proc=function(){
+					var currentWidth=getPxNum(window.getComputedStyle(elem).width);
+					
+				};
+			};
 		</script>
 	</body>
 

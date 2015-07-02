@@ -189,17 +189,18 @@ a:hover {
 }
 #process{
 	position: relative;
-	top: -50px;
-	height: 306px;
+	top: -37px;
+	height: 162px;
 	width: 1224px;
 	margin: 0 auto;
 }
 .processbar{
 	width: 204px;
-	height: 306px;
+	height: 162px;
 	float: left;
 	background-repeat: no-repeat;
-	background-size:100% auto;
+	/*background-size:100% auto;*/
+	background-position: right center; 
 }
 .processbar1{
 	background-image: url(../img/sbanner_00.png);
@@ -218,4 +219,11 @@ a:hover {
 }
 .processbar6{
 	background-image: url(../img/sbanner_05.png);
+}
+.process-bar{
+	position: absolute;
+	height: 5px;
+	width: 204px;
+	bottom: 0px;
+	background-color: #49047A;
 }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body>
+		<div id="slider">
+			<div id="main">
+				<div class="banner1" id="banner"></div>
+				<div class="banner2" id="banner"></div>
+				<div class="banner3" id="banner"></div>
+				<div class="banner4" id="banner"></div>
+				<div class="banner5" id="banner"></div>
+				<div class="banner6" id="banner"></div>
+			</div>
+		</div>
+		<div id="process">
+			<div class="processbar processbar1">
+				<div class="process-bar process-bar1"></div>
+			</div>
+			<div class="processbar processbar2">
+				<div class="process-bar process-bar2"></div>
+			</div>
+			<div class="processbar processbar3">
+				<div class="process-bar process-bar3"></div>
+			</div>
+			<div class="processbar processbar4">
+				<div class="process-bar process-bar4"></div>
+			</div>
+			<div class="processbar processbar5">
+				<div class="process-bar process-bar5"></div>
+			</div>
+			<div class="processbar processbar6">
+				<div class="process-bar process-bar6"></div>
+			</div>
+		</div>
+		<script>
+			var $ = function(id) {
+				return document.getElementById(id);
+			};
+			var getPxNum=function(str){
+				if(!str){
+					return 0;
+				}
+				else{
+					return parseInt(str.split("px")[0]);
+				}
+			};
+			var slide = function(element) {
+				var step = function(){
+					var currentLeft = getPxNum(window.getComputedStyle(element).left);
+					if (currentLeft > -1224*5) {
+						element.style.left = Math.floor(currentLeft - 1224*5/2000)+"px";
+					} else {
+						element.style.left = -1224*5+"px";
+						clearInterval(intervalID);
+					}
+				};
+				var intervalID = setInterval(step, 10);
+			};
+			var main=$("main");
+			slide(main);
+		</script>
+	</body>
+
+</html>

@@ -10,24 +10,36 @@
 		<script>
 			var ajax=document.getElementsByTagName("button")[0];
 			var request=new XMLHttpRequest();
-			var sendAjax=function(){
+			var callback=function(responseText){
+				var para=document.createElement("p");
+				var text=responseText;
+				var t=document.createTextNode(text);
+				para.appendChild(t);
+				document.getElementById("a").appendChild(para);
+			};
+			var sendAjax=function(callback){
 				if(request)
 				{
 					request.open("GET","ajaxtest.txt",true);
+					request.setRequestHeader('muHeader','myValue');
 					request.onreadystatechange=function(){
 						if(request.readyState==4)
 						{
-							var para=document.createElement("p");
-							var text=request.responseText;
-							var t=document.createTextNode(text);
-							para.appendChild(t);
-							document.getElementById("a").appendChild(para);
+							if(request.status>=200&request.status<=300||request.status==304)
+							{
+								callback(request.responseText);
+							}
+							else
+							{
+								alert("ajax request fail,status:"+request.status);
+							}
 						}
-					}
+					};
 					request.send(null);
 				}
 			};
-			ajax.onclick=sendAjax;
+//			ajax.onclick=sendAjax.bind(this,callback);
+			ajax.onclick=function(){sendAjax(callback)};
 		</script>
 	</body>
 </html>

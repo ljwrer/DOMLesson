@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			/* structure */
+			
+			#kwicks {
+				width: 590px;
+				overflow-x: hidden;
+			}
+			#kwicks:hover li a {
+				width: 100px;
+			}
+			#kwicks li {
+				float: left;
+				overflow-x: hidden;
+				display: block;
+			}
+			#kwicks li:hover a {
+				width: 285px !important;
+			}
+			/* individual kwicks */
+			
+			#kwicks li a {
+				display: block;
+				/*text-indent: -9999px;*/
+				width: 134px;
+				height: 143px;
+				transition-property: width;
+				transition-duration: 1s;
+			}
+		</style>
+	</head>
+
+	<body>
+		<ul id="kwicks">
+			<li><a class="john" title="John Lennon" href="http://en.wikipedia.org/wiki/John_lennon">John Lennon</a>
+			</li>
+			<li><a class="paul" title="Paul McCartney" href="http://en.wikipedia.org/wiki/Paul_mccartney">Paul McCartney</a>
+			</li>
+			<li><a class="george" title="George Harrison" href="http://en.wikipedia.org/wiki/George_harrison">George Harrison</a>
+			</li>
+			<li><a class="ringo" title="Ringo Starr" href="http://en.wikipedia.org/wiki/Ringo_starr">Ringo Starr</a>
+			</li>
+		</ul>
+	</body>
+
+</html>

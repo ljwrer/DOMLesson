@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script>
+			var get = function(url, options, callback) {
+				var xhr = new getHTTPObject();
+				xhr.open("GET", url + "?" + serialize(options), true);
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState == 4) {
+						if (xhr.status >= 200 && xhr.status <= 300 || xhr.status == 304) {
+							callback(xhr.responseText);
+						} else {
+							alert("get failed,status:" + xhr.status);
+						}
+					}
+				};
+				xhr.send(null);
+			};
+			var serialize = function(data) {
+				var ret = [];
+				for (var name in data) {
+					var value = data[name];
+					if (!data.hasOwnProperty(name)) continue;
+					if (typeof data[name] == "function") continue;
+					name = encodeURIComponent(name);
+					value = encodeURIComponent(value);
+					ret.push(name + "=" + value);
+				}
+				ret = ret.join("&");
+				return ret;
+			};
+			var getHTTPObject = function() {
+				if (typeof XMLHttpRequest == "undefined") {
+					XMLHttpRequest = function() {
+						try {
+							return new ActiveXObject("Msxml2.XMLHTTP.6.0");
+						} catch (e) {
+							//TODO handle the exception
+						}
+						try {
+							return new ActiveXObject("Msxml2.XMLHTTP.3.0");
+						} catch (e) {
+							//TODO handle the exception
+						}
+						try {
+							return new ActiveXObject("Msxml2.XMLHTTP");
+						} catch (e) {
+							//TODO handle the exception
+						}
+					}
+				}
+				return new XMLHttpRequest();
+			};
+			get('/information', {name: 'netease ', age: 18}, function (data) {lert(data);});
+		</script>
+	</body>
+
+</html>

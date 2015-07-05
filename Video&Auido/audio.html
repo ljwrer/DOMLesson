@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			audio{
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<audio src="ED6001.ogg" controls preload="auto" loop></audio>
+		<button></button>		
+		<button></button>
+		<button></button>
+		<button></button>
+		<button></button>		
+		<audio>
+			<source src="ED6001.ogg" type="audio/ogg"></source>
+		</audio>
+		<script>
+			var audio=document.querySelector("audio");
+//			alert(audio.canPlayType('audio/mp3'));
+			audio.onwaiting=function(event){
+				
+			}
+		</script>
+	</body>
+</html>

@@ -8,9 +8,11 @@
 				height: 100px;
 			}
 		</style>
+		<script type="text/javascript" src="../js/base.js" ></script>
 	</head>
 	<body>
 		<audio src="ED6001.ogg" controls preload="auto" loop></audio>
+		<video src="ED6001.ogg" controls></video>
 		<button></button>		
 		<button></button>
 		<button></button>
@@ -21,10 +23,9 @@
 		</audio>
 		<script>
 			var audio=document.querySelector("audio");
-//			alert(audio.canPlayType('audio/mp3'));
-			audio.onwaiting=function(event){
-				
-			}
+			println(audio.canPlayType('audio/mp3'));
+			audio.volume=0.54;
+			setTimeout(function(){audio.currentTime=0.5;},5000);
 		</script>
 	</body>
 </html>

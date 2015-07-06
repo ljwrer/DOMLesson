@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../js/base.js" ></script>
+	</head>
+	<body>
+		<button>assign</button>
+		<button id="replace">replace</button>
+		<button id="refresh">refresh</button>
+		<button id="close">close</button>
+		<script>
+			var n=navigator;
+			println(n.platform);
+			println(n.userAgent);
+			println(location);
+			println(location.href)
+			var assign=document.querySelector("button");
+			assign.onclick=function(){
+				location.assign("http://www.163.com");
+			};
+			var replace=document.querySelector("#replace");
+			replace.onclick=function(){
+				location.replace("http://www.163.com");
+			}
+			refresh=document.querySelector("#refresh");
+			refresh.onclick=function(){
+				location.reload();
+			}
+			var h=history;
+			println(screen.availHeight);
+			println(screen.height);
+			close.onclick=function(){
+				close();
+			}
+			var w=open(" http://www.163.com","subwindow","width=400,height=350,status=yes,toolbar=yes,resizable=yes");
+			setTimeout(close.bind(w),5000);
+//			location.href="http://www.163.com";
+			println(document.cookie.length);
+		</script>
+	</body>
+</html>

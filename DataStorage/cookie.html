@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript" src="../js/base.js" ></script>
+		<script>
+			var getCookies=function(){
+				var cookieObj={};
+				var allCookies=document.cookie;
+				var cookieList=allCookies.split(";");
+				var i=0,
+					len=cookieList.length;
+				for (;i<len;i++)
+				{
+					var pairs=cookieList[i].split("=");
+					var name=decodeURIComponent(pairs[0]);
+					var value=decodeURIComponent(pairs[1]);
+					cookieObj[name]=value;
+				}
+				return cookieObj;
+			};
+			document.cookie="hello=world";
+			var c=getCookies();
+			if(c)
+			{
+				for(var item in c)
+				{
+					println(item+":"+c[item]);
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="" name="test">
+			<input type="" name="a" id="" value="hello" />
+		</form>
+		<script type="text/javascript" src="../js/base.js" ></script>
+		<script>
+			var testForm=document.forms.test;
+			println(testForm);
+			println(testForm["a"]);
+			println(testForm.elements["a"]);
+			println(testForm["a"].name="b");
+			println(testForm.elements["a"]);
+			println(testForm["a"]);
+		</script>
+	</body>
+</html>

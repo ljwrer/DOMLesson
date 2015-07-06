@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="formAction.html" method="post" enctype="application/x-www-form-urlencoded" name="pizza" autocomplete="on">
+			<p><lable>姓名：<input name="custname" required/></lable></p>			
+			<p><lable>电话：<input name="custtel" required/></lable></p>			
+			<p><lable>邮箱：<input name="custemail" type="email"/></lable></p>			
+			<fieldset id="">
+				<legend>披萨大小</legend>
+				<lable><input type="radio" name="size" value="small" required/>小</lable>
+				<lable><input type="radio" name="size" value="middle" required/>中</lable>
+				<lable><input type="radio" name="size" value="large" required />大</lable>
+			</fieldset>
+			<fieldset>
+				<legend>披萨配料</legend>
+				<label><input type="checkbox" name="topping" id="" value="bacon" />熏肉</label>
+				<label><input type="checkbox" name="topping" id="" value="cheese" />奶酪</label>
+				<label><input type="checkbox" name="topping" id="" value="onion" />洋葱</label>
+				<label><input type="checkbox" name="topping" id="" value="mashroom" />蘑菇</label>
+			</fieldset>
+			<p><lable>配送时间：<input type="time" name="dilivery" min="11:00" max="22:00" step="900" /></lable></p>
+			<p><button type="submit">提交</button></p>
+			<p><button type="reset">reset</button></p>
+		</form>
+		<script type="text/javascript" src="../js/base.js" ></script>
+		<script>
+			var pizza=document.forms.pizza;
+			println(pizza);
+			println(pizza.elements);
+			println(pizza.elements["size"]);
+			println(pizza.elements["size"][0]);
+			println(pizza["size"]);
+			println(pizza["size"][0]);
+			pizza.reset=function(){
+				alert("no");
+			}
+		</script>
+	</body>
+</html>

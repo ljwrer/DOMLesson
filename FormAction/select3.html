@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+		<script type="text/javascript" src="../js/base.js"></script>
+		<script>
+			var data = [{
+				text: '第一级',
+				value: '1',
+				list: [{
+					text: '第二级',
+					value: '1.1',
+					list: [{
+						text: '第三级',
+						value: '1.1.1',
+						list: []
+					}, ]
+				}, ]
+			}, {
+				text: '第一级-2',
+				value: '2',
+				list: [{
+					text: '第二级',
+					value: '1.1',
+					list: [{
+						text: '第三级',
+						value: '1.1.1',
+						list: []
+					}, ]
+				}, ]
+			}];
+			var fillSelector = function(select, options) {
+				for (var i = select.length - 1; i >= 0; i--) {
+					select.remove(i);
+				}
+				for (i = 0; i < options.length; i++) {
+					var option = new Option(options[i].text, options[i].value);
+					select.add(option);
+				}
+			};
+
+			function cascade(selectList, data) {
+					// 这里selectList为依次级联的选择器元素列表，如[select1,select2,select3,...]
+					// TODO
+				}
+				//遍历每一级selectList
+				//找出每一级的option
+				//添加option
+				//注册监听器
+				//监听器 找出每个下一级的option
+				// 移除option,添加option
+			var fillOption=function(select){
+				var options=[];
+				var list=select.list
+				if(list!=null)
+				{
+					for(var i=0;i<list.length;i++)
+					{
+						var option=new Option(list[i].test,list[i].value);
+						options.push(option);
+					}
+				}
+			};
+		</script>
+	</body>
+
+</html>

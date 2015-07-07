@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<select id="c">
+			
+		</select>
+		<select id="s">
+			
+		</select>
+		<script type="text/javascript" src="../js/base.js" ></script>
+		<script>
+			var chapters=[
+			{
+				text:'第一章',
+				value:1
+			},
+			{
+				text:'第二章',
+				value:2
+			}];
+			var selectors={
+				1:[{text:"第一章第一节",value:1},
+				{text:"第一章第二节",value:2},
+				{text:"第一章第三节",value:3}],
+				2:[{text:'第二章第一节',value:1},
+				{text:'第二章第二节',value:2},
+				{text:'第二章第三节',value:3}]
+			};
+			var fillSelector=function(chapter,selector)
+			{
+				var c=document.querySelector("#c");
+				for(var i=0,len=chapter.length;i<len;i++)
+				{
+					var option=new Option(chapter[i].text,chapter[i].value);
+					c.add(option);
+				}
+				addEvent(c,"change",createChild,false);
+			}
+			var createChild=function(event){
+				
+				var valueOfChapter=event.target.value;
+				var selector=selectors[valueOfChapter];
+				var d=document.querySelector("#s");
+				for(var i=d.length-1;i>=0;i--)
+				{
+					d.remove(i);
+				}
+				for(var i=0,len=selector.length;i<len;i++)
+				{
+					var option=new Option(selector[i].text,selector[i].value);
+					d.add(option);
+				}
+			};
+			fillSelector(chapters,selectors);
+		</script>
+	</body>
+</html>

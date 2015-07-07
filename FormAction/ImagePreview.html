@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			img{
+				display: inline-block;
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+		<script type="text/javascript" src="../js/base.js"></script>
+		
+	</head>
+
+	<body>
+		<input type="file" name="image-upload" id="image-upload" accept="image/*" multiple />
+		<script>
+			var file = document.querySelector("#image-upload");
+			var fileChange = function(event) {
+				var fileList=event.target.files;
+				for(var i=0,len=fileList.length;i<len;i++)
+				{
+					file2dataurl(fileList[i],show);
+				}
+			};
+			var show=function(url){
+				var body=document.querySelector("body");
+//				var div=document.createElement("div");
+				var img=document.createElement("img");
+				img.src=url;
+				body.appendChild(img);
+			}
+			addEvent(file, "change", fileChange, false);
+			
+			function file2dataurl(file, callback) {
+				if (!window.FileReader) {
+					throw 'Browser not support File API !';
+				}
+				var reader = new FileReader();
+				reader.readAsDataURL(file);
+				reader.onload = function(event) {
+					callback(event.target.result);
+				};
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<select id="c">
+
+		</select>
+		<select id="s">
+			
+		</select>
+		<script type="text/javascript" src="../js/base.js" ></script>
+		<script>
+			var chapters=[
+			{
+				text:'第一章',
+				value:1
+			},
+			{
+				text:'第二章',
+				value:2
+			}];
+			var sections={
+				1:[{text:"第一章第一节",value:1},
+				{text:"第一章第二节",value:2},
+				{text:"第一章第三节",value:3}],
+				2:[{text:'第二章第一节',value:1},
+				{text:'第二章第二节',value:2},
+				{text:'第二章第三节',value:3}]
+			};
+			var fillSelector=function(select,options)
+			{
+				for(var i=select.length-1;i>=0;i--)
+				{
+					select.remove(i);
+				}
+				for(i=0;i<options.length;i++)
+				{
+					var option=new Option(options[i].text,options[i].value);
+					select.add(option);
+				}
+			}
+			var chapterChange=function(event){
+				var valueOfChapter=event.target.value;
+				fillSelector(s,sections[valueOfChapter]);
+			};
+			var c=document.querySelector("#c");
+			var s=document.querySelector("#s");
+			fillSelector(c,chapters);
+			fillSelector(s,sections[1]);
+			addEvent(c,"change",chapterChange,false);		
+		</script>
+	</body>
+</html>

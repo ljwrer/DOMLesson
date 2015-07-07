@@ -1,12 +1,124 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-		<script>
-			alert(null==undefined)
-		</script>
-	</body>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8" />
+    <title>cascade</title>
+</head>
+<body>
+    <form action="#" id="content">
+        <select name="one" id="first" data-index="0">
+            <option value="select">请选择一项</option>
+        </select>
+        <select name="two" id="second" data-index="1">
+            <option value="select">请选择一项</option>          
+        </select>
+        <select name="three" id="third" data-index="2">
+            <option value="select">请选择一项</option>          
+        </select>
+    </form>
+    <script>
+        var data =[
+    {
+        text:'第一级',
+        value:'1',
+        list:[
+            {
+                text:'第二级',
+                value:'1.1',
+                list:[
+                    {
+                        text:'第三级',
+                        value:'1.1.1',
+                        list:[]
+                    },
+                ]
+            },
+        ]
+    },
+    {
+        text:'第一级2',
+        value:'2',
+        list:[
+            {
+                text:'第二级2',
+                value:'2.1',
+                list:[
+                    {
+                        text:'第三级2',
+                        value:'2.1.1',
+                        list:[]
+                    },
+                ]
+            },
+            {
+                text:'第二级3',
+                value:'2.2',
+                list:[
+                    {
+                        text:'第三级3',
+                        value:'2.2.1',
+                        list:[]
+                    },
+                ]
+            }
+        ]
+    }
+]       
+    var form = document.getElementById("content");
+    var list = form.getElementsByTagName('select');
+    function cascade(selectList,data){
+        fillselect(selectList[0],data);
+        function remove(start,selectList,end)
+        {
+            // 这个函数作用是移出选择的select以及之后的选项
+            // 参数分别为起始，选项列表，结束
+            for(var i =start; i<end; i++)
+            {
+                var select = selectList[i];
+                select.setAttribute("selected","true")
+                for (var j = select.length - 1; j>0; j--)
+                {
+                    select.remove(j);
+                }
+            }
+        }
+        function fillselect(select,list){
+            // 这个函数作用是用list里的数据信息填充选中的select
+            list.forEach(function(data){
+                var option = new Option(data.text,data.value);
+                select.add(option);
+            })
+        }       
+        function search(data){
+            // 这个函数是用来选取对应的数据列表
+            var list = [];
+            var t = data;
+            for(var i =0;i<selectList.length;i++){
+                list[i] = selectList[i].selectedIndex;
+                if (list[i]) {
+                    t = t[list[i]-1].list;
+                };
+            }
+            return t;
+        }       
+        for(var i =0;i<selectList.length;i++){
+            // 主函数这里是用来绑定onchange事件。
+            selectList[i].onchange = function(){
+                var Index = this.selectedIndex;
+                var now = Number(this.getAttribute("data-index"))+1;
+                if (Index == 0) {
+                    remove(now,selectList,i);
+                    return
+                };
+                if (now < i) {
+                    remove(now,selectList,i)
+                    var list=search(data);
+                    fillselect(selectList[now],list)
+                }
+            }
+        }
+    }
+    cascade(list,data)
+    </script>
+</body>
 </html>

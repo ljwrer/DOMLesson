@@ -4,6 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<script type="text/javascript" src="../js/base.js"></script>
 	</head>
 
 	<body>
@@ -26,14 +27,15 @@
 				value: '2',
 				list: [{
 					text: '第二级',
-					value: '1.1',
+					value: '2.1',
 					list: [{
 						text: '第三级',
-						value: '1.1.1',
+						value: '2.1.1',
 						list: []
 					}, ]
 				}, ]
 			}];
+			 //给select添加options
 			var fillSelector = function(select, options) {
 				for (var i = select.length - 1; i >= 0; i--) {
 					select.remove(i);
@@ -47,23 +49,54 @@
 			function cascade(selectList, data) {
 					// 这里selectList为依次级联的选择器元素列表，如[select1,select2,select3,...]
 					// TODO
+					for(var i=0;i<selectList.length;i++)
+					{
+						selectList[i].list=data[0].list[0].list[0]
+					}
+					addEvents(selectList);
 				}
 				//遍历每一级selectList
-				//找出每一级的option
+				//找出每一级的option				
 				//添加option
 				//注册监听器
 				//监听器 找出每个下一级的option
 				// 移除option,添加option
-			var fillOption=function(select){
-				var options=[];
-				var list=select.list
-				if(list!=null)
+				//找出每一级的option				
+			var fillOption = function(select,i) {
+				var options = [];
+//				var list = select.list
+				var list=[];
+				var selectBefore=[];
+				for(var j=0;j<i;j++)
 				{
-					for(var i=0;i<list.length;i++)
-					{
-						var option=new Option(list[i].test,list[i].value);
+					
+				}
+				if (list != null) {
+					for (var i = 0; i < list.length; i++) {
+						var option = new Option(list[i].test, list[i].value);
 						options.push(option);
 					}
+				}
+				return options;
+			};
+			 //监听器 找出每个下一级的option
+			var selectHander = function(event) {
+				var select=event.target;
+				var n=select.listnumber;
+				var len=select.listlength;
+				for (var i=n;i<len;i++)
+				{
+					var options=fillOption(select,n);
+					fillSelector(select,options);
+				}
+			};
+
+			 //注册监听器
+			var addEvents = function(selectList) {
+				for (var i = 0; i < selectList.length; i++) {
+					selectList[i].listnumber=i;
+					selectList[i].listlength=selectList.length;
+					addEventWithParam(selectList[i], "change", selectHander, false, i);
 				}
 			};
 		</script>

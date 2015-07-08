@@ -8,6 +8,11 @@
 	</head>
 
 	<body>
+		<select>
+			<option>请选择</option>
+		</select>
+		<select><option>请选择</option></select>		
+		<select><option>请选择</option></select>		
 		<script type="text/javascript" src="../js/base.js"></script>
 		<script>
 			var data = [{
@@ -26,10 +31,10 @@
 				text: '第一级-2',
 				value: '2',
 				list: [{
-					text: '第二级',
+					text: '第二级-2',
 					value: '2.1',
 					list: [{
-						text: '第三级',
+						text: '第三级-2',
 						value: '2.1.1',
 						list: []
 					}, ]
@@ -46,34 +51,33 @@
 				}
 			};
 
-			function cascade(selectList, data) {
-					// 这里selectList为依次级联的选择器元素列表，如[select1,select2,select3,...]
-					// TODO
-					for(var i=0;i<selectList.length;i++)
-					{
-						selectList[i].list=data[0].list[0].list[0]
-					}
-					addEvents(selectList);
-				}
+			
 				//遍历每一级selectList
 				//找出每一级的option				
 				//添加option
 				//注册监听器
 				//监听器 找出每个下一级的option
 				// 移除option,添加option
-				//找出每一级的option				
-			var fillOption = function(select,i) {
-				var options = [];
-//				var list = select.list
-				var list=[];
-				var selectBefore=[];
-				for(var j=0;j<i;j++)
+				//找出每一级的option
+				
+				
+			var parseData=function(selectList,data,n){
+				var ret=data;
+				var selected=[];
+				for(var i=0;i<n;i++)
 				{
-					
+					selected[i]=selectList[i].selectedIndex;
+					ret=ret[selected[i]].list;
 				}
+				return ret;
+			};
+
+			var fillOption = function(selectList,select,n) {
+				var options = [];
+				var list = parseData(selectList,data,n)
 				if (list != null) {
 					for (var i = 0; i < list.length; i++) {
-						var option = new Option(list[i].test, list[i].value);
+						var option = new Option(list[i].text, list[i].value);
 						options.push(option);
 					}
 				}
@@ -86,19 +90,35 @@
 				var len=select.listlength;
 				for (var i=n;i<len;i++)
 				{
-					var options=fillOption(select,n);
+					var options=fillOption(selectList,select,n);
 					fillSelector(select,options);
 				}
 			};
-
+ 
 			 //注册监听器
 			var addEvents = function(selectList) {
 				for (var i = 0; i < selectList.length; i++) {
 					selectList[i].listnumber=i;
 					selectList[i].listlength=selectList.length;
-					addEventWithParam(selectList[i], "change", selectHander, false, i);
+					addEvent(selectList[i], "change", selectHander, false);
 				}
 			};
+			function cascade(selectList, data) {
+					// 这里selectList为依次级联的选择器元素列表，如[select1,select2,select3,...]
+					// TODO
+					fillSelector(selectList[0],data[0].list);
+					addEvents(selectList);
+				}
+			var selectList=document.getElementsByTagName("select");
+//			for (var i=0;i<selectList.length;i++) {
+//				selectList[i].selectedIndex=1;
+//			}
+			fillSelector(selectList[0],fillOption(selectList,selectList[0],0));
+			fillSelector(selectList[1],fillOption(selectList,selectList[0],1));
+			fillSelector(selectList[2],fillOption(selectList,selectList[0],2));
+			addEvents(selectList);
+//			fillSelector(selectList[2],parseData(selectList,data,2));
+
 		</script>
 	</body>
 

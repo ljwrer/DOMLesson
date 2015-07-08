@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../js/base.js"></script>
+	</head>
+
+	<body>
+		<select><option>请选择</option></select>
+		<select><option>请选择</option></select>		
+		<select><option>请选择</option></select>		
+		<script>
+			var data = [{
+				text: '第一级',
+				value: '1',
+				list: [{
+					text: '第二级',
+					value: '1.1',
+					list: [{
+						text: '第三级',
+						value: '1.1.1',
+						list: []
+					}, ]
+				}, ]
+			}, {
+				text: '第一级-2',
+				value: '2',
+				list: [{
+					text: '第二级-2',
+					value: '2.1',
+					list: [{
+						text: '第三级-2',
+						value: '2.1.1',
+						list: []
+					}, ]
+				}, ]
+			}];
+			
+			function cascade(selectList, data) {
+
+				var fillSelector= function(select, options) {
+					for (var i = select.length - 1; i >= 0; i--) {
+						select.remove(i);
+					}
+					for (i = 0; i < options.length; i++) {
+						var option = new Option(options[i].text, options[i].value);
+						select.add(option);
+					}
+				};
+				
+				var fillOption = function(n) {
+					var list=getList(n);
+					if (list != null) {
+						for (var i = 0; i < list.length; i++) {
+							var option = new Option(list[i].text, list[i].value);
+							options.push(option);
+						}
+					}
+					return options;
+				};
+				
+				var getList=function(n){
+					var dataCache=data;
+					var selected=[];
+					for(var i=0;i<n;i++)
+					{
+						selected[i]=selectList[i].selectedIndex;
+						dataCache=dataCache[selected[i-1]].list;
+					}
+					
+				};
+				
+				var selectHander = function(event) {
+					var select=event.target;
+					var n=select.listnumber;
+						for (var i=n+1;i<selectList.length;i++)
+						{
+							var options=fillOption(i);
+							fillSelector(selectList[i],options);
+						}
+					};
+		 
+				var addEvents = function() {
+					for (var i = 0; i < selectList.length; i++) {
+						selectList[i].listnumber=i;
+						addEvent(selectList[i], "change", selectHander, false);
+					}
+				};
+				fillSelector(selectList[0],data);	
+				addEvents();
+			}
+			var selectList=document.getElementsByTagName("select");
+			cascade(selectList,data);
+
+		</script>
+	</body>
+
+</html>

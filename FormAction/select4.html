@@ -62,17 +62,17 @@
 						select.add(option);
 					}
 				};
-				var fillOption = function(n) {
-					var list = getList(n);
-					var options = [];
-					if (list != null) {
-						for (var i = 0; i < list.length; i++) {
-							var option = new Option(list[i].text, list[i].value);
-							options.push(option);
-						}
-					}
-					return options;
-				};
+//				var fillOption = function(n) {
+//					var list = getList(n);
+//					var options = [];
+//					if (list != null) {
+//						for (var i = 0; i < list.length; i++) {
+//							var option = new Option(list[i].text, list[i].value);
+//							options.push(option);
+//						}
+//					}
+//					return options;
+//				};
 				var getList = function(n) {
 					var dataCache = data;
 					var selected = [];
@@ -86,7 +86,7 @@
 					var select = event.target;
 					var n = select.listnumber;
 					for (var i = n + 1; i < selectList.length; i++) {
-						var options = fillOption(i);
+						var options = getList(i);
 						fillSelector(selectList[i], options);
 					}
 				};
@@ -97,7 +97,7 @@
 					}
 				};
 				for (var i = 0; i < selectList.length; i++) {
-					fillSelector(selectList[i], fillOption(i));
+					fillSelector(selectList[i], getList(i));
 				}
 				addEvents();
 			};

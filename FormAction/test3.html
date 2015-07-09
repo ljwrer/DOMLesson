@@ -5,15 +5,10 @@
 		<title></title>
 	</head>
 	<body>
-		<select>
-			<option>请选择</option>
-			<option>请选择</option>
-		</select>
-		<select><option>请选择</option></select>		
-		<select><option>请选择</option></select>	
+		<select id="chapter"><option value="0">文档树</option></select>
 		<script>
-			var list=document.getElementsByTagName("select");
-			alert(list[1].selectedIndex)
+			var chapter=document.querySelector("#chapter");
+			chapter.add(new Option("节点操作", 1));
 		</script>
 	</body>
 </html>

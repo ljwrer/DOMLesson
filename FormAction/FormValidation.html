@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<form action="" method="post">
+			<input type="text" id="user" required/>
+			<button>submit</button>
+		</form>
+		<script>
+			var user=document.getElementById("user");
+			var form=document.getElementsByTagName("form")[0];
+			var invalidHander=function(){
+				var target=event.target;
+				var status=target.validity.valueMissing;
+				if(status)
+				{
+					target.setCustomValidity("请输入用户名");
+//					form.submit();
+				}
+			};
+			user.addEventListener("invalid",invalidHander,false);
+			
+		</script>
+	</body>
+</html>

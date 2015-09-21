@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#small{
+				position: relative;
+				float: left;
+				margin:5px;
+				height: 400px;
+				width: 400px;
+				border: 1px solid deepskyblue;
+			}
+			#windows{
+				display: none;
+				position: absolute;
+				height: 266.6px;
+				width: 266.6px;
+				left: 0;
+				top: 0;
+				border: 1px solid deepskyblue;
+			}
+			#big{
+				display: none;
+				float: left;
+				position: relative;
+				margin:5px;
+				height: 400px;
+				width: 400px;
+				border: solid 1px black;
+				overflow: hidden;
+			}
+			#big img{
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="info">
+			<p>0</p>
+			<p>0</p>
+			<p>0</p>
+			<p>0</p>
+			<p>0</p>
+			<p>0</p>
+		</div>
+		<div id="small">
+			<img src="img/small.jpg"/>
+			<div id="windows">
+				
+			</div>
+		</div>
+		<div id="big">
+			<img src="img/big.jpg"/>
+		</div>
+		<script>
+		 	var SMALL=400;
+		 	var BIG=600;
+		 	var WIN=Math.pow(SMALL,2)/BIG;
+			var infos=document.getElementById("info").children;
+			infos=Array.prototype.slice.call(infos);
+			var small=document.getElementById("small");
+			var big=document.getElementById("big");
+			var windows=document.getElementById("windows");
+			var bigIMG=big.querySelector("img");
+			small.onmouseenter=function(event){
+				windows.style.display="block"
+				big.style.display="block";
+			}
+			small.onmouseleave=function(event){
+				windows.style.display="none";
+				big.style.display="none";
+				infos.forEach(function(item){
+					item.innerHTML=0;
+				})
+			}
+			small.onmousemove=function(event){
+				var cX=event.clientX-small.offsetLeft;
+				var cY=event.clientY-small.offsetTop;
+				var tX,tY;
+				infos[0].innerHTML=(event.clientX+" "+event.clientY);
+				infos[1].innerHTML=(event.screenX+" "+event.screenY);
+				infos[2].innerHTML=(small.offsetLeft+" "+small.offsetHeight+" "+small.offsetTop+" "+small.offsetWidth);
+				if(cX<WIN/2){
+					windows.style.left=0;
+					bigIMG.style.left=0;
+					
+				}else if(cX>SMALL-WIN/2){
+					tX=SMALL-WIN;
+					windows.style.left=tX+"px";
+					bigIMG.style.left=-tX*BIG/SMALL+"px";
+				}else{
+					tX=cX-WIN/2
+					windows.style.left=tX+"px";
+					bigIMG.style.left=-tX*BIG/SMALL+"px";
+				}
+				if(cY<WIN/2){
+					windows.style.top=0;
+					bigIMG.style.top=0;
+				}else if(cY>SMALL-WIN/2){
+					tY=SMALL-WIN;
+					windows.style.top=tY+"px";
+					bigIMG.style.top=-tY*BIG/SMALL+"px";
+				}else{
+					tY=cY-WIN/2;
+					windows.style.top=tY+"px";
+					bigIMG.style.top=-tY*BIG/SMALL+"px";
+				}
+				infos[3].innerHTML=cX+" "+cY;
+				infos[4].innerHTML=windows.style.left+" "+windows.style.top;
+			}
+		</script>
+	</body>
+</html>

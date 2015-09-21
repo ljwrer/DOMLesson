@@ -7,7 +7,6 @@
 		<style>
 			img{
 				display: inline-block;
-				width: 100px;
 				height: 100px;
 			}
 		</style>
@@ -16,7 +15,7 @@
 	</head>
 
 	<body>
-		<input type="file" name="image-upload" id="image-upload" accept="image/*" multiple />
+		<p><input type="file" name="image-upload" id="image-upload" accept="image/*" multiple /></p>
 		<script>
 			var file = document.querySelector("#image-upload");
 			var fileChange = function(event) {
@@ -27,14 +26,12 @@
 				}
 			};
 			var show=function(url){
-				var body=document.querySelector("body");
-//				var div=document.createElement("div");
 				var img=document.createElement("img");
+				var img=new Image();
 				img.src=url;
-				body.appendChild(img);
+				document.body.appendChild(img);
 			}
 			addEvent(file, "change", fileChange, false);
-			
 			function file2dataurl(file, callback) {
 				if (!window.FileReader) {
 					throw 'Browser not support File API !';

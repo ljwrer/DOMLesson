@@ -3,14 +3,40 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<style>
+			div{
+				background: gray;
+			}
+			div p{
+				display: block;
+				background-color: deepskyblue;
+				width: 100px;
+			}
+		</style>
 	</head>
 	<body>
-		<a href="AddEventListener.html">hello</a>
+		<div class="parent">
+			<p>1</p>
+			<p>2</p>
+			<p>3</p>
+			<p>4</p>
+			<p>5</p>
+			<p>6</p>
+			<p>7</p>
+			<p>8</p>
+			<p>9</p>
+			<p><a href="#">10</a></p>
+		</div>
 		<script>
-			var a=document.getElementsByTagName("a")[0];
-			a.addEventListener("click",function(e){e.preventDefault()},false);
-//			a.preventDefault();
-//			a.attachEvent()
+			var parent=document.querySelector(".parent");
+			parent.addEventListener("mouseover",callback,false);
+			function callback(event){
+				var target=event.target;
+				if(target.constructor.toString().indexOf("HTMLParagraphElement")!==-1)
+				{
+					target.style.backgroundColor="#ff00aa";
+				}
+			}
 		</script>
 	</body>
 </html>
